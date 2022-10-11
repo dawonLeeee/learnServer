@@ -30,3 +30,15 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+
+
+### custom ###
+.plugins
+.lock
+.log
+version.ini
+.gitattributes
+.metadata
+.policy
+.properties
