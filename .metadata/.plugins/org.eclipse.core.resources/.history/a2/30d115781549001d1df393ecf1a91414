@@ -1,0 +1,30 @@
+package edu.kh.servlet.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+//controller: 요청에 따라 응답할 코드를 제어
+
+//Servlet클래스를 만들기 위해서는
+//javax.servlet.http.HttpServlet 추상클래스(직접 객체생성x)를 만드시 상속받아야 한다
+// -> 요청, 응답을 위한 방법(메서드) 제공
+// tomcat에서 제공하는 클래스
+public class ServletEx1 extends HttpServlet{
+
+
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		//HttpServletRequest : 클라이언트의 정보 + 요청 관련 정보가 담긴 객체
+		
+		//HttpServletResponse : 서버가 클라이언트에게 응답하는 방법을 제공하는 객체
+	
+		System.out.println("이름, 나이를 제출받아 처리할 코드 수행");
+	
+	}
+}

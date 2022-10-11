@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Servlet Project 1</title>
+</head>
+<body>
+	<h1>index 또는 default라는 이름이 붙은 
+		html, jsp 파일은 메인페이지 역할을 한다</h1>
+
+	<hr>
+	<h1>테스트1</h1>
+	<pre>
+		이름과 나이를 입력받아 서버(Java쪽으로)로 전달(제출).
+		**준비물 : 
+			- form태그 : 내부에 작성된 input태그의 값을 
+			지정된 경로의 서버 또는 페이지로 제출하는 역할
+				-> 제출 == 클라이언트 요청
+			- input태그 : 값을 입력하기 위한 입력 양식을 제공하는 태그.
+				제출시 input태그의 name속성 값이 key, 입력된 값이 value(Map 형식)
+	</pre>
+
+	<!-- action속성 
+		: 제출할 서버 또는 페이지 경로(주소) 작성하는 속성
+	-->
+	<!-- http://192.168.10.78:8080 (-> 프로토콜, IP, Port(서버 컴퓨터의 배포된 웹앱 위치))
+		
+			+		
+
+		/ServletProject1/ + 요청할 서비스 주소(->클라이언트 서비스 요청(절대 경로)) -->
+	<form action="/ServletProject1/example1.do">
+	<!-- 제출 시 ServletProject1 프로젝트에 있는 example.do라는 서비스를 요청한다.
+		단, 요청시 내부에 작성된 input태그의 값도 같이 전달한다
+	-->
+	</form>
+
+	이름 : <input type="text" name="inputName"> <br>
+	나이 : <input type="text" name="inputAge"> <br>
+	<button type="submit">서버로 제출하기</button>
+
+</body>
+</html>

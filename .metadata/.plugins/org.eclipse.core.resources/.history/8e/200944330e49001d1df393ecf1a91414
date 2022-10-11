@@ -1,0 +1,9 @@
+package edu.kh.servlet.controller;
+
+//controller: 요청에 따라 응답할 코드를 제어
+
+//Servlet클래스를 만들기 위해서는
+//javax.servlet.http.HttpServlet 추상클래스를 만드시 상속받아야 한다
+public class ServletEx1 {
+
+}

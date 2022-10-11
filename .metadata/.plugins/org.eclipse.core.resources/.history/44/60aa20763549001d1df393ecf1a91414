@@ -1,0 +1,23 @@
+package edu.kh.servlet.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class ServletEx3 extends HttpServlet{
+	
+//	doPost() : POST 방식 요청을 처리하는 메서드
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String inputId = req.getParameter("inputId");
+		String[] inputPw = req.getParameterValues("inputPw");
+		String inputEmail = req.getParameter("inputEmail");
+		String agree = req.getParameter("agree");
+	}
+
+	
+}
