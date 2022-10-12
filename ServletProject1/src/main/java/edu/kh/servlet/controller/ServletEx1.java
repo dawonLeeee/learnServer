@@ -49,7 +49,7 @@ public class ServletEx1 extends HttpServlet{
 		
 		// resp.getWriter() : 서버가 클라이언트에게 응답할 수 있는 스트림을 얻어옴
 		PrintWriter out = resp.getWriter();
-		out.print(inputName + "님의 나이는 " + inputAge + "세 입니다");
+		out.print(inputName + "님의 나이는 " + inputAge + "  세 입니다");
 	}
 	
 	
