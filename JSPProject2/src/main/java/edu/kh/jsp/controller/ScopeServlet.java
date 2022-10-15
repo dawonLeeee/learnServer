@@ -19,46 +19,48 @@ public class ScopeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher
-			= req.getRequestDispatcher("/WEB-INF/views/el/scope.jsp");
+		RequestDispatcher dispatcher 
+		= req.getRequestDispatcher("/WEB-INF/views/el/scope.jsp");
 		
+//		dispatcher.forward(req, resp);
 		
 		// 1. page -> JSP에서만 사용 가능
 		// PageContext 추상클래스 이용
 	
 		
 		// 2. request
-		req.setAttribute("message", "request scope에 저장된 메세지 입니다.");
+		req.setAttribute("message", "request scope에 저장된 메세지입니다");
+		
 		
 		// 3. session
-		// 1) HttpSession 객체 얻어오기
-		HttpSession session = req.getSession();
+		// 	1) HttpSession 객체 얻어오기
+		HttpSession session = req.getSession(); // interface라 new로 객체생성 불가
 		
-		// 2) session scope로 값 세팅하기
-		// * page, request, session, application은 모두 사용법이 동일
+		//  2) session scope로 값 셋팅하기
+			// * page, request, session, application은 모두 사용법이 동일
+			//(setAttribute, getAttribute)
 		session.setAttribute("sessionValue", "999");
 		
 		
-		
 		// 4. application
-		// 1) ServletContext 객체 얻어오기
+		// 	 1) ServletContext 객체 얻어오기
 		ServletContext application = req.getServletContext();
 		
-		// 2) application 범위로 값 세팅
+		//   2) application 범위로 값 셋팅
 		application.setAttribute("appValue", "애플리케이션 범위 값");
 		
 		
+		// 내장객체의 우선순위 확인
+		// page -> JSP에 작성
+		req.setAttribute("str", "request scope");
+		session.setAttribute("str", "request scope");
+		application.setAttribute("str", "request scope");
 		
-		// 내장 객체 우선 순위 확인
-		
-		// page -> JSP 작성
-		
-		req.setAttribute        ("str", "request scope");
-		session.setAttribute    ("str", "session scope");
-		application.setAttribute("str", "application scope");
 		
 		
 		dispatcher.forward(req, resp);
+		
+		
 	}
 	
 	

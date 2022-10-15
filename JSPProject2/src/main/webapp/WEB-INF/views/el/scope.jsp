@@ -11,69 +11,63 @@
     <h1>Servlet/JSP 내장 객체와 범위(scope)</h1>
 
     <pre>
-        Servlt/JSP에는 기본적으로 내장되어있는 4가지 객체가 존재함.
-        
-        4종류의 객체는 각각 영향을 미칠 수 있는 범위가 다름.
+        Servlet/JSP에는 기본적으로 내장되어 있는 4가지 객체가 존재함.
 
+        4 종류의 객체는 각각 영향을 미칠 수 있는 범위가 다름.
 
         1. page : 현재 페이지
-        -> 현재 Servlet 또는 JSP 에서만 사용 가능
-           (1페이지)
+            ->현재 Servlet/JSP에서만 사용 가능
+                (1페이지)
 
-        2. request : 요청 받은 페이지(Servlet/JSP)와
-                    요청을 위임 받은 페이지(Servlet/JSP)에서 사용 가능
-                    (최소 2페이지 이상)
-
-      <%--   <% request.getParameter("name") %> --%>
+        2. request : 요청 받은 페이지(Servlet/JSP)와 
+            요청을 위임받은 페이지(Servlet/JSP)에서 사용 가능
+            (최소 2페이지 이상)
+<%--             <% request.getParameter("name") %> --%>
 
 
         3. session : 현재 사이트에 접속한 브라우저당 1개씩 생성.
-                    브라우저가 종료되거나 
-                    session이 만료될 때 까지 유지
+            브라우저가 종료되거나 session이 만료될때까지 유지
 
-        (세션에 로그인 정보를 기록해둠
-         -> 브라우저가 종료되거나 로그아웃이 되기 전 까지
-            계속 로그인 상태가 유지됨.)
+            (세션에 로그인정보를 기록해둠
+            ->브라우저가 종료되거나 로그아웃이 되기 전까지 계속 로그인상태가 유지)
 
-
-        4. application : 하나의 웹 애플리케이션 당 1개만 생성되는 객체.
-            -> 서버 시작 시 생성되며
-               종료 시 까지 유지
-
+        4. application : 하나의 웹 애플리케이션 당 1개만 생성되는 객체
+            -> 서버 시작시 생성되며 종료시까지 유지
             -> 누구든지 사용 가능
+            -> 자바의 static과 비슷한 개념.(어디서든 사용 가능)
 
 
-		*****************************
-		*** 내장 객체의 우선 순위 ***
-		*****************************
+
+		****************************
+				내장객체의 우선순위
+		****************************
 		
-		-> setAttribute("key", value)로 내장 객체가 값을 세팅할 때
-		  key 값이 중복되는 경우
-		  
-		  \${key} 로 작성 하는 경우 
-		  범위가 작은 내장 객체가 높은 우선 순위를 갖게 된다.
-		  
-		  page > request > session > application
-		
+		-> setAttribute("key", value)로 내장객체가 값을 셋팅할 때
+		 key 값이 중복되는 경우
+		 \${key} 로 작성하는 경우 범위가 작은 내장객체가 높은 우선순위를 갖는다
+		 
+		 page > request > session > application
+		 
+
+
+
+
     </pre>
+    
 
 
     <ul>
-    	<li>
-    		<%
-				pageContext.setAttribute("pageMsg", "페이지 범위 입니다.");
-    		
-    			pageContext.setAttribute("str", "page scope");
-			%>
-			
-			page scope pageMsg : ${pageMsg}
-			
-    		
-    	</li>
-    
-    
         <li>
-            request scope message : ${message} 
+            <% 
+                pageContext.setAttribute("pageMsg", "페이지 범위 입니다.");
+             
+             	pageContext.setAttribute("str", "page scope");
+             %>
+            page scope pageMsg : ${pageMsg}
+        </li>
+
+        <li>
+            request scope message : ${message}
         </li>
 
         <li>
@@ -84,6 +78,7 @@
             application scope appValue : ${appValue}
         </li>
 
+        
     </ul>
 
 

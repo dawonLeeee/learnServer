@@ -20,46 +20,44 @@
         (추가적인 작성법도 존재)
 
 
-        ** EL의 특징 **
-        1. get이라는 단어를 사용하지 않는다.
-        왜? EL == 화면에 표현하는 언어
-               == 출력용 언어(setting 불가능)
-               == set을 못하니까 get만 남은 상황
-               == get을 생략해도 무조건 get
-        
-        2. EL은 null을 빈칸으로 처리한다.
-           \${ null인 변수 }  -> 빈칸 출력
-           \${ NullPointerException 발생 코드 } -> 빈칸 출력 (예외 발생 X)
+        ** EL의 특징
+        1. get이라는 단어를 사용하지 않는다
+        	왜? EL == 화면에 표현하는 언어 == 출력용 언어(setting용 언어가 아니다 )
+        	== set을 못하니까 get만 남은 상황. 
+        	== get을 생량해도 무조건 get
+        2. EL은 null을 빈칸으로 처리한다
+			/${null인 변수} -> 빈칸 출력        
+			/${NullPointerException 발생코드 } -> 빈칸 출력(예외 발생x)
+        	
     </pre>  
 
-    테스트1 : <%= request.getParameter("test") %> <br>
+    <%-- 테스트1 : <%= request.getParameter("test") %> --%>
 
-    테스트2 : ${param.test}  <br>
+   <%--  테스트2 : ${param.test } --%>
 
     <%-- NullPointerException 강제 발생 --%>
     <%-- <%= request.getParameter("test").equals("테스트")  %> --%>
 
-    ${param.test == '테스트'} <br>
+    <%-- ${param.test == '테스트'} <br>
     person.name = ${person.name}
 
 
     <form action="/JSPProject2/elTest" method="post">
         이름 : <input type="text" name="inputName"> <br>
-
         나이 : <input type="number" name="inputAge"> <br>
-
         주소 : <input type="text" name="inputAddress" size="50"> <br>
 
         <button>제출하기</button>
-    </form>
+    
+    </form> --%>
 
 
     <hr>
 
     <ul>
         <li>
-            <%-- 요청 위임 되지 않아서 빈칸 출력 --%>
-            request scope message : ${message} 
+            <%-- 요청 위임되지 않아 빈칸 출력(scope: request라서) --%>
+            request scope message : ${message}
         </li>
 
         <li>
@@ -67,7 +65,7 @@
         </li>
 
         <li>
-            application scope appValue : ${appValue}
+            appliction scope appValue : ${appValue}
         </li>
     </ul>
 

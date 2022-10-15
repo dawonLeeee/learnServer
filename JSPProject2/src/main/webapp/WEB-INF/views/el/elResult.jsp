@@ -1,3 +1,4 @@
+<%@ page import = "edu.kh.jsp.model.vo.Person" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%-- Person 클래스 import --%>
@@ -27,33 +28,32 @@
     	+ 데이터 파싱(String -> int)도 자동으로 된다!
     </pre>
     
-    이름 : ${param.inputName} <br>
-    나이 : ${param.inputAge + 100} <br>
+    이름 : ${param.inputName }
+    나이 : ${param.inputAge }
     주소 : ${param.inputAddress }
     
     
     <h4>추가 세팅된 값</h4>
     <pre>
-    	\${ 세팅한 key 값 }
-    
-    	1) request에 추가 세팅된 값을 얻어올 때
-        	별도의 다운 캐스팅이 필요 없음!
-    	
-    	2) import 구문도 생략!
-    	
-    	3) 객체에 저장된 값을 얻어올 때 getter를 호출하는데
-    	  get필드명()이 아닌 필드명만 작성하면 된다!
+    	\${셋팅된 key값}
+    	1) request에 추가 세팅된 값을 얻어올 때 별도의 다운캐스팅이 필요없음
+    	2) import 구문도 생략
+    	3) 객체에 저장된 값을 얻어올 때 getter를 호출하는데 get필드명()이 아닌
+    		필드명만 작성하면 된다(get 생략)
+    	 
     	  
     	
     </pre>
     
-    메세지 : ${ message } <br>
+    메세지 : ${message }
     
-    person의 name : ${ person.name } <br>
-    person의 age  : ${ person.age } <br>
-    person의 address : ${ person.address } <br>
+    person의 name : ${person.name}
+    person의 age : ${person.age}
+    person의 address : ${person.address}
     
-    person.toString() : ${ person }
+    person의 toString : ${person }
+    <hr>
+    
     
     
     <hr>
@@ -64,20 +64,26 @@
     	String inputName = request.getParameter("inputName");
     	int inputAge = Integer.parseInt(request.getParameter("inputAge"));
     	String inputAddress = request.getParameter("inputAddress");
-
-    	// 추가 세팅된 값 얻어오기
+    	
+    	//추가 셋팅된 값
     	String message = (String)request.getAttribute("message");
-    	//Person person =  (Person)request.getAttribute("person");
+    	Person person = (Person)request.getAttribute("person");
     %>
     
     
     <h4>파라미터</h4>
-    이름 : <%= inputName %> <br>
-    나이 : <%= inputAge + 100%> <br>
-    주소 : <%= inputAddress %> 
+    이름 : <%= inputName%> <br>
+    나이 : <%= inputAge %> <br>
+    주소 : <%= inputAddress %> <br>
     
-    <h4>추가 세팅된 값</h4>
+    <h4>추가 셋팅된 값</h4>
     메세지 : <%= message %> <br>
+    Person의 name : <%= person.getName() %>
+    Person의 age : <%= person.getAge() %>
+    Person의 address : <%= person.getAddress() %>
+    
+    person.toString() : <%= person.toString() %>
+    
     
 <%-- 
     person의 name : <%= person.getName() %> <br>
@@ -88,15 +94,14 @@
 --%>
  
     
-    <hr>
+    <%-- <hr>
 
     <h3>EL에서 null과 '비어있다'에 대한 처리 방법</h3>
 
     <h4>empty : 비어있거나 null인지를 검사하는 연산자</h4>
     
-    <h4>\${ 값 == null } / \${ 값 eq null} : null 인지 검사하는 방법</h4>
-    
-    <h4>\${ 값 != null } / \${ 값 ne null} : null 아닌지 검사하는 방법</h4>
+    <h4>\${값 == null}</h4>, <h4>\${값 eq null}</h4>
+    <h4>\${값 != null}</h4>, <h4>\${값 ne null}</h4> --%>
     
     
     <pre>
@@ -114,8 +119,8 @@
 		list3 eq null : ${list3 eq null}
 		empty list3 : ${empty list3}
 		
-		list3에 요소가 추가되어 있는가?   ${!empty list3}
-		list3에 요소가 추가되어 있는가?   ${not empty list3}
+		list3에 요소가 추가되어 있는가?   ${!empty list3} -->false
+		list3에 요소가 추가되어 있는가?   ${not empty list3} -->false
 		
 		
 		
@@ -129,7 +134,7 @@
 		
 		
 		<!-- java : list4.get(0) -->
-		list4의 0번 인덱스에 존재하는 값 : ${ list4[0] }
+		list4의 0번 인덱스에 존재하는 값 : ${list4[0]}
 		
 		--> EL은 List에 존재하는 요소를 얻어올 때 
 		    배열 처럼 [index번호] 를 입력해서 얻어온다.
