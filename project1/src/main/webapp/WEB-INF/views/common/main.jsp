@@ -35,100 +35,98 @@
     -->
             
     <main>
-        <header>
-            <section>
-                <a href="#"> <!--클릭시 메인페이지로 이동하는 로고-->
-                    <img src="/resources/images/logo.jpg" id="home-logo" alt="kh로고">
-                </a>
-                
-            </section>
-            <section>
-                <article class="search-area">
-
-                    <!-- form : 내부 input태그의 값을 서버 또는 페이지로 전달(제출) -->
-                    <form action="#">
-                        <fieldset>
-                            <input type="search" id="query" name="query" 
-                            placeholder="검색어를 입력해주세요">
-                            <button type="submit" id="search-btn" class="fa-solid fa-magnifying-glass">
-                                <!-- 돋보기아이콘 : 특수문자랑 비슷하게 취급(font-size 등 사용가능) -->
-                            </button>
-                        </fieldset>
-            
-                    </form>
-                </article>
-            </section>
-            <section></section>
-        </header>
-        <nav>
-            <ul>
-                <%-- <li><a href="#">공지사항</a></li>
-                <li><a href="#">자유 게시판</a></li>
-                <li><a href="#">질문 게시판</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">1:1문의</a></li> --%>
-
-                <c:forEach var="boardType" items="${boardTypeMap}">
-                    <%-- 
-                        EL을 이용해 Map 데이터를 다루는 방법 
-                        key ==>${변수명.key}
-                        value ==> ${변수명.value}
-                        --%>
-
-                    <li><a href="/board/${boardType.key}/list">${boardType.value}</a></li>
-                </c:forEach>
-            </ul>
-        </nav>
+        
+        <%-- header.jsp 추가(포함 --%>
+        <%-- 
+        jsp 액션태그 중 include 
+        	- 해당 위치에 page속성으로 지정된 jsp파일의 내용이 포함됨
+        	- jsp파일의 경로는 /webapp폴더를 기준으로 작성
+        --%>
+        <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+        
         
         <section class="content"> 
-            <section class="content-1"></section>
+            <section class="content-1">
+            
+            </section>
             <section class="content-2">
                 <!-- js다루려면 form태그에 name속성을 지정해주는 것이 좋다 -->
-                <form action="#" name="login-frm">
-                    <!-- 아이디, 비밀번호, 로그인버튼 -->
-                    <fieldset id="id-pw-area">
-                        <section>
-                            <input type="text" name="inputId" placeholder="아이디" autocomplete="off">
-                            <input type="password" name="inputPw" placeholder="비밀번호">
-                        </section>
-                        <section>
-                            <!-- type:"submit"이 기본값-->
-                            <button>로그인</button>
-                        </section>
-                    </fieldset>
-        
-                    <!-- 아이디 저장 -->
-                    <!-- label태그 내부에 input태그를 작성하면 자동으로 연결 -->
-                    <label>
-                        <input type="checkbox" name="saveId">아이디 저장
-                    </label>
-        
-                    <!-- 회원가입, ID/PW찾기 -->
-                    <article id="signUp-find-area">
-                        <a href="#">회원가입</a>
-                        <span>|</span>
-                        <a href="#">ID/PW 찾기</a>
-                    </article>
-        
-                </form>
+                
+                
+                <!-- 로그인 여부에 따라 출력화면 변경 -->
+                <c:choose>
+                
+                	<%-- 로그인x인 경우 --%>
+                	<c:when test="${empty sessionScope.loginMember}">
+                	<%-- sessionScope의 loginMember가 null이 아닌 경우(loginMember != null --%>
+						<form action="member/login" name="login-frm" method="post">
+							<!-- 아이디, 비밀번호, 로그인버튼 -->
+							<fieldset id="id-pw-area">
+								<section>
+									<input type="text" name="inputEmail" placeholder="아이디(이메일)"
+										autocomplete="off" value="${cookie.saveId.value}"> <input type="password"
+										name="inputPw" placeholder="비밀번호">
+								</section>
+								<section>
+									<!-- type:"submit"이 기본값-->
+									<button>로그인</button>
+								</section>
+							</fieldset>
+
+							<%-- 쿠키에 saveId가 있을 경우 --%>
+							<c:if test="${!empty cookie.saveId.value}">
+								<%-- temp 변수 선언 --%>
+								<c:set var="temp" value="checked"/>
+								<%--page scope == page문 어디서든 사용 가능 == if문 나가도 쓸 수 있다 --%>
+							</c:if>
+
+
+
+							<!-- 아이디 저장 -->
+							<!-- label태그 내부에 input태그를 작성하면 자동으로 연결 -->
+							<label> <input type="checkbox" name="saveId" ${temp}>아이디
+								저장
+							</label>
+
+							<!-- 회원가입, ID/PW찾기 -->
+							<article id="signUp-find-area">
+								<a href="#">회원가입</a> <span>|</span> <a href="#">ID/PW 찾기</a>
+							</article>
+
+						</form>
+
+
+					</c:when>
+					<%-- 로그인 O인 경우 --%>
+                	<c:otherwise>
+                		<article class="login-area">
+                	
+                			<!-- 회원 프로필 이미지 -->
+                			<a href="#">
+                				<img id="member-profile" src="/resources/images/user.png">
+                			</a>
+                			
+                			<!-- 회원 정보 + 로그아웃 버튼 -->
+                			<div class="my-info">
+                				<div>
+	                				<a href="#" id="nickname">${loginMember.memberNickname }</a>
+	                				<a href="/member/logout" id="logout-btn">로그아웃</a>
+                				</div>
+                				<p>${loginMember.memberEmail}</p>
+                			</div>
+                		</article>
+                	</c:otherwise>
+                </c:choose>
+
+                
             </section>
         </section>
     </main>
+    
 
-    <footer>
-        <p>
-            Copyright &copy; KH Information Educational Institute A-Class
-        </p>
-        <article>
-            <a href="#">프로젝트 소개</a>
-            <span> | </span>
-            <a href="#">이용약관</a>
-            <span> | </span>
-            <a href="#">개인정보취급방침</a>
-            <span> | </span>
-            <a href="#">고객센터</a>
-        </article>
-    </footer>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+    
 
 
 
