@@ -36,38 +36,38 @@ public class LoginServlet extends HttpServlet{
 			result = "아이디 또는 비밀번호가 일치하지 않습니다";
 					
 		}
-//		
-////		응답형식, 문자 인코딩 지정
-//		resp.setContentType("text/html; charset=UTF-8");
-//		
-//		//클라이언트 응답용 스트림
-//		PrintWriter out = resp.getWriter();
-//		
-//		out.println("<!DOCTYPE html>");
-//		out.println("<html>");
-//		out.println("<head>");
-//		out.println("<title>로그인 결과 페이지</title>");
-//		out.println("</head>");
-//		out.println("<body>");
-//		out.print("<h1>로그인 결과</h1>");
-//		out.printf("<h3 style='background-color:green';> %s </h3>\n", result);
-//		out.print("<button type='button' onclick='history.back()'>돌아가기</button>");
-//		
-//		
-//		out.println("</body>");
-//		out.println("</html>");
+		
+//		응답형식, 문자 인코딩 지정
+		resp.setContentType("text/html; charset=UTF-8");
+		
+		//클라이언트 응답용 스트림
+		PrintWriter out = resp.getWriter();
+		
+		out.println("<!DOCTYPE html>");
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<title>로그인 결과 페이지</title>");
+		out.println("</head>");
+		out.println("<body>");
+		out.print("<h1>로그인 결과</h1>");
+		out.printf("<h3 style='background-color:green';> %s </h3>\n", result);
+		out.print("<button type='button' onclick='history.back()'>돌아가기</button>");
+		
+		
+		out.println("</body>");
+		out.println("</html>");
 		
 		
 //		************************************************
 //		** JSP로 응답하기 **
-		
+//		
 //		Dispatcher : 발송자, 필요한 정보를 제공하는 자, 역할을 넘긴다
 //		RequestDispatcher == 요청을 위임하는 역할의 객체
 //			->정확히는 요청에 대한 응답화면을 만들어 클라이언트에게 출력하는 역할을 위임
-		
+//		
 //		req.getRequestDispatcher("JSP경로") : 
 //			- HttpServletRequest 객체가 생성될 때 내부에 요청을 위임하는 객체를 생성하는 방법을 포함
-		
+//		
 //		** JSP 경로 작성 방법 **
 //			- "webapp폴더를 기준"으로 파일 경로 작성
 //				(ex: /WEB-INF/views/loginResult.jsp)
@@ -78,11 +78,11 @@ public class LoginServlet extends HttpServlet{
 //		- HttpServletRequest, HttpServletResponse를 매개변수로 전달
 //		- 왜? JSP가 요청 데이터(req)를 이용해서 화면을 만들고
 //		- 클라이언트에게 응답(resp)하기 위해 매개변수로 전달
-		
+//		
 //		- forward는 페이지 이동이 아닌 Servlet의 역할 중 응답화면 출력 역할을 분업한 JSP에게
 //		- req, resp를 전달만 하는 것 -->JSP가 응답을 대신할 뿐이다
 //		==> 결론 : 페이지 이동이 아님. 주소창의 요청 주소도 변하지 않음
-		
+//		
 		
 
 		
