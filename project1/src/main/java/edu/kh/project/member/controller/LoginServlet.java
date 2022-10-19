@@ -17,6 +17,15 @@ import edu.kh.project.member.model.vo.Member;
 @WebServlet("/member/login")
 public class LoginServlet extends HttpServlet{
 
+//	login페이지로 응답(forward)
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+//		login.jsp로 요청을 발송할 requestDispatcher를 얻어옴->바로 전달
+		req.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(req, resp);
+		
+	}
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -63,8 +72,14 @@ public class LoginServlet extends HttpServlet{
 			// 1) HttpSession 객체 얻어오기
 			HttpSession session = req.getSession();
 			
+			String path = null; // 로그인 성공/실패에 따라 이동할 경로를 저장할 변수
+			
 //			로그인 성공시
 			if(loginMember != null) {
+				
+				path = "/"; // 메인페이지
+				
+				
 				// 2) Session scope에 속성 추가하기
 				session.setAttribute("loginMember", loginMember);
 				// 3) session 만료시간 설정(초단위 지정)
@@ -112,13 +127,17 @@ public class LoginServlet extends HttpServlet{
 //				---------------------------------------------------
 				
 			} else { // 로그인 실패시
+				
+				//현재 요청 이전의 페이지 주소
+				path = req.getHeader("referer");
+				
 //				request에 저장하면 세션 만료되면 req 다 날아가서 session에 저장.
 				session.setAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다");
 			}
 			
 			
-			
-			resp.sendRedirect("/");
+			// 로그인 성공시) path가 "/"인 경우 메인페이지로 리다이렉트(메인페이지 재요청)
+			resp.sendRedirect(path);
 			/*
 			 * 	forward <-> redirect 차이점
 			 * 				
