@@ -1,0 +1,91 @@
+.signUp-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+}
+
+#signUp-frm{
+    margin-top: 30px;
+}
+
+#signUp-frm > label{
+    display: block;
+    margin-top: 40px;
+    font-size: 18px;
+}
+
+#signUp-frm > span {
+    display: block;
+    /* 메세지가 없어도 이만큼의 공간 확보 */
+    height: 20px;
+}
+
+.required{
+    color: firebrick;
+    padding: 0 5px;
+}
+
+/* input태그를 감싸고 있는 div태그 */
+.signUp-input-area {
+    width: 500px;
+    height: 50px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    display: flex;
+    /* align-items:stretch(기본) -> center(가운데로 옴) */
+    align-items: center;
+}
+
+.signUp-input-area > input  {
+    width: 70%;
+    height: 100%;
+    padding: 15px 10px 5px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+}
+
+/* :focus-within : 내부 input요소에 포커스가 맞춰졌을 때 */
+.signUp-input-area:focus-within{
+    border-bottom-color: #455ba8;
+}
+
+.signUp-input-area > button{
+    width: 30%;
+    height: 70%;
+    background-color: white;
+    border: 2px solid #ddd;
+    cursor: pointer;
+}
+
+
+/* 입력 관련 메세지 */
+.signUp-message{
+    font-size: 14px;
+    letter-spacing: -1px;
+}
+
+.confirm{
+    color:green;
+}
+.error{
+    color: red;
+}
+
+#signUp-btn{
+    width: 100%;
+    padding: 10px;
+    margin: 50px 0;
+    border: none;
+    background-color: #455ba8;
+    color:white;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#signUp-btn:active{
+    transform:scale(0.95);
+}

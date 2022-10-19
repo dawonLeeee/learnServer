@@ -29,6 +29,24 @@ public class MemberService {
 		return loginMember;
 	}
 
+	/** 회원가입
+	 * @param member
+	 * @return insert 성공여부(1/0)
+	 * @throws Exception
+	 */
+	public int signUp(Member member) throws Exception{
+
+		
+		Connection conn = getConnection();
+		int result = dao.signUp(conn, member);
+		
+		if(result >0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		
+		return result;
+	}
+
 	
 	
 	
