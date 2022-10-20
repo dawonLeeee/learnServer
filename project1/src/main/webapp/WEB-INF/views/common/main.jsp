@@ -104,7 +104,7 @@
                 		<article class="login-area">
                 	
                 			<!-- 회원 프로필 이미지 -->
-                			<a href="#">
+                			<a href="/member/myPage/info">
                 				<img id="member-profile" src="/resources/images/user.png">
                 			</a>
                 			

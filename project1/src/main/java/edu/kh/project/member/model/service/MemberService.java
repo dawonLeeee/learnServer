@@ -47,6 +47,25 @@ public class MemberService {
 		return result;
 	}
 
+	/** 내 정보 수정 페이지
+	 * @param member
+	 * @return result(내 정보 수정 결과)
+	 * @throws Exception
+	 */
+	public int updateMember(Member member) throws Exception {
+
+		Connection conn = getConnection();
+		
+		int result = dao.updateMember(conn, member);
+		
+		if(result >0) commit(conn);
+		else 			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
 	
 	
 	
